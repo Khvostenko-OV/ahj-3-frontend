@@ -4,7 +4,7 @@
      "es6": true,
      "browser": true,
      "node": true,
-     "jest/globals": true
+     "jest": true
    },
   "rules": {
     "no-restricted-syntax": [
