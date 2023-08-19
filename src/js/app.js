@@ -43,7 +43,7 @@ editForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const xhr = new XMLHttpRequest();
-  if (document.getElementById('ticketId').value == -1) {
+  if (document.getElementById('ticketId').value === -1) {
     xhr.open('POST', backendHost + '?method=createTicket', true);
   } else {
     xhr.open('POST', backendHost + `?method=patchTicket&id=${document.getElementById('ticketId').value}`, true);
@@ -58,12 +58,12 @@ editForm.addEventListener('submit', (e) => {
 
   xhr.onload = () => {
     editFormClose();
-    if (xhr.status == 201) {
+    if (xhr.status === 201) {
       addTicketElement(JSON.parse(xhr.response));
-    } else if (xhr.status == 200) {
+    } else if (xhr.status === 200) {
       const ticket = JSON.parse(xhr.response);
       Array.from(ticketList.children).find(row => { 
-        return +row.querySelector('.ticket_id').value == ticket.id 
+        return +row.querySelector('.ticket_id').value === ticket.id 
       }).querySelector('.ticket_name').textContent = ticket.name
     } else {
       alert(`Error - ${xhr.status}`);
@@ -77,13 +77,13 @@ function getTicket(id) {
   xhr.open('GET', backendHost + `?method=ticketById&id=${id}`, false);
   xhr.send();
 
-  if (xhr.status == 200) {
+  if (xhr.status === 200) {
     return JSON.parse(xhr.response);
   } else return undefined;
 }
 
 function showTicket(id, row) {
-  if (row.lastChild.className == 'ticket_description') {
+  if (row.lastChild.className === 'ticket_description') {
     row.lastChild.remove();
     return;
   }
@@ -117,7 +117,7 @@ function changeTicketStatus(id, box) {
   }
 
   xhr.onload = () => { 
-    if (xhr.status != 200) {
+    if (xhr.status !== 200) {
       box.checked = !box.checked;
     }
   }
@@ -160,7 +160,7 @@ xhr.onload = () => {
       return;
   }
   const tickets = xhr.response;
-  if (tickets.length == 0 || tickets.every(ticket => !ticket)) {
+  if (tickets.length === 0 || tickets.every(ticket => !ticket)) {
     ticketList.textContent = 'Нет тикетов';
     return;
   }
@@ -169,7 +169,7 @@ xhr.onload = () => {
 }
 
 ticketList.addEventListener('click', (e) => {
-  if (editForm.className == 'edit_ticket_form open' || deleteConfirm.className == 'confirm open') return;
+  if (editForm.className === 'edit_ticket_form open' || deleteConfirm.className === 'confirm open') return;
   const row = e.target.parentElement;
   switch (e.target.className) {
     case 'ticket_status':
@@ -184,5 +184,7 @@ ticketList.addEventListener('click', (e) => {
       return;
     case 'ticket_delete':
       deleteTicket(row.dataset.id, row);
+    default:
+      return;
     }
 });
