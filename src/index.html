@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+<div class="edit_ticket">
+  <div class="edit_frame_open"><button class="btn" id="createOpen">Добавить тикет</button></div>
+    <form class="edit_ticket_form" id="editForm" method="post">
+      <h1 class="form_header">Добавить тикет</h1>
+      <input type="hidden" id="ticketId" name="id" value=-1>
+      <label>
+        <div>Краткое описание</div>
+        <input class="input" id="ticketName" name="name" required>
+      </label>
+      <label>
+        <div>Подробное описание</div>
+        <textarea class="input" id="ticketDescr" name="description" rows="3"></textarea>
+      </label>
+      <button class="btn" type="reset">Очистить</button>
+      <button class="btn" id="editClose">Отмена</button>
+      <button class="btn" type="submit">Ok</button>
+    </form>
+</div>
+
+<div class="ticket_list">
+  Загрузка тикетов
+</div>
+
+<div class="confirm" id="deleteConfirm">
+  <h1 class="form_header">Удалить тикет</h1>
+  <div>Вы уверены, что хотите удалить тикет? Это действие необратимо!</div>
+  <button class="btn" id="confirm_cancel">Отмена</button>
+  <button class="btn" id="confirm_ok">Ok</button>
+</div>
+
+</body>
+
+</html>
