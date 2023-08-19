@@ -8,6 +8,7 @@
    },
   "rules": {
     "no-unused-vars": "warn",
+    "no-param-reassign": ["error", { "props": true }],
     "no-restricted-globals": ["error", "event", "fdescribe"],
     "no-restricted-syntax": [
       "error",

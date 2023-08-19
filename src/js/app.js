@@ -175,15 +175,20 @@ ticketList.addEventListener('click', (e) => {
     case 'ticket_status':
       changeTicketStatus(row.dataset.id, e.target);
       return;
+
     case 'ticket_name':
     case 'ticket_description':
       showTicket(row.dataset.id, row);
       return;
+
     case 'ticket_edit':
       changeTicket(row.dataset.id);
       return;
+
     case 'ticket_delete':
       deleteTicket(row.dataset.id, row);
+      return;
+      
     default:
       return;
     }
