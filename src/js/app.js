@@ -189,6 +189,7 @@ ticketList.addEventListener('click', (e) => {
       deleteTicket(row.dataset.id, row);
       return;
       
+      break;
     default:
       return;
     }
