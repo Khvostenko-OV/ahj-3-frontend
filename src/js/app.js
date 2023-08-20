@@ -188,8 +188,7 @@ ticketList.addEventListener('click', (e) => {
     case 'ticket_delete':
       deleteTicket(row.dataset.id, row);
       return;
-      
-      break;
+
     default:
       return;
     }
