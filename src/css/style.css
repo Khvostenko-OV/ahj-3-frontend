@@ -92,6 +92,8 @@
 .ticket_description {
   width: 70%;
   padding: 10px 0 0 30px;
+  overflow-wrap: break-word;
+  white-space: pre-line;
 }
 
 .confirm {

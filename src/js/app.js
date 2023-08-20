@@ -118,6 +118,7 @@ function changeTicketStatus(id, box) {
   xhr.send(params);
 
   xhr.onerror = () => {
+    alert(`Server Error!`); 
     location.reload();
   }
 
@@ -140,6 +141,8 @@ function deleteTicket(id, row) {
     xhr.send();
 
     xhr.onerror = () => {
+      alert(`Server Error!`); 
+      deleteConfirm.className = 'confirm';
       location.reload();
     }
 
