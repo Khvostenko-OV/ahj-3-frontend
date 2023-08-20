@@ -59,11 +59,13 @@ editForm.addEventListener('submit', (e) => {
   xhr.onload = () => {
     editFormClose();
     if (xhr.status === 201) {
-      ticketList.textContent = '';
+      if (ticketList.firstChild.textContent.startsWith('Нет')) {
+        ticketList.textContent = '';
+      }
       addTicketElement(JSON.parse(xhr.response));
     } else if (xhr.status === 200) {
       const ticket = JSON.parse(xhr.response);
-      const row = ticketList.children.find(r => { return +r.querySelector('.ticket_id').value === ticket.id });
+      const row = Array.from(ticketList.children).find(r => { return +r.querySelector('.ticket_id').value === ticket.id });
       row.querySelector('.ticket_name').textContent = ticket.name;
       if (row.querySelector('.ticket_description')) {
         row.querySelector('.ticket_description').textContent = ticket.description;
