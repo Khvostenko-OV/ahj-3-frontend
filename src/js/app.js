@@ -43,7 +43,7 @@ editForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const xhr = new XMLHttpRequest();
-  if (document.getElementById('ticketId').value === -1) {
+  if (+document.getElementById('ticketId').value === -1) {
     xhr.open('POST', backendHost + '?method=createTicket', true);
   } else {
     xhr.open('POST', backendHost + `?method=patchTicket&id=${document.getElementById('ticketId').value}`, true);
