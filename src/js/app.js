@@ -59,12 +59,15 @@ editForm.addEventListener('submit', (e) => {
   xhr.onload = () => {
     editFormClose();
     if (xhr.status === 201) {
+      ticketList.textContent = '';
       addTicketElement(JSON.parse(xhr.response));
     } else if (xhr.status === 200) {
       const ticket = JSON.parse(xhr.response);
-      Array.from(ticketList.children).find(row => { 
-        return +row.querySelector('.ticket_id').value === ticket.id 
-      }).querySelector('.ticket_name').textContent = ticket.name
+      const row = ticketList.children.find(r => { return +r.querySelector('.ticket_id').value === ticket.id });
+      row.querySelector('.ticket_name').textContent = ticket.name;
+      if (row.querySelector('.ticket_description')) {
+        row.querySelector('.ticket_description').textContent = ticket.description;
+      }
     } else {
       alert(`Error - ${xhr.status}`);
       location.reload();
@@ -141,6 +144,9 @@ function deleteTicket(id, row) {
     xhr.onload = () => { 
       deleteConfirm.className = 'confirm';
       row.remove();
+      if (ticketList.children.length === 0) {
+        ticketList.textContent = 'Нет тикетов';
+      }
     }
   }
 }
@@ -165,7 +171,7 @@ xhr.onload = () => {
     return;
   }
   ticketList.textContent = '';
-  tickets.forEach((ticket) => addTicketElement(ticket));
+  tickets.forEach(ticket => addTicketElement(ticket));
 }
 
 ticketList.addEventListener('click', (e) => {
