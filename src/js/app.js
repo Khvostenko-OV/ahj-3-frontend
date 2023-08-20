@@ -59,7 +59,7 @@ editForm.addEventListener('submit', (e) => {
   xhr.onload = () => {
     editFormClose();
     if (xhr.status === 201) {
-      if (ticketList.firstChild.textContent.startsWith('Нет')) {
+      if (ticketList.firstChild.className !== 'ticket_row') {
         ticketList.textContent = '';
       }
       addTicketElement(JSON.parse(xhr.response));
